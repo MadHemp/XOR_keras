@@ -13,18 +13,19 @@ saida = pd.read_csv('outputXOR.csv')
 
 x = entrada[:600]
 y = saida[:600]
-
-print (x,y)
-
-
 model = Sequential()
 model.add(Dense(10, input_dim = 3 , activation = 'relu'))
 model.add(Dense(6, activation = 'relu'))
 model.add(Dense(1,activation = 'sigmoid'))
 
 model.compile(loss = 'mean_squared_error', optimizer = 'adam', metrics = ['accuracy'])
-model.fit(x , y, epochs=500, batch_size = 1)
+model.fit(x , y, epochs=500, batch_size = 10)
 
 pred = entrada[600:]
 model.predict(pred)
+
+model_json = model.to_json()
+with open('classificador_xor.json', 'w') as json_file:
+    json_file.write(model_json)
+model.save_weights('classificador_xor.h5')
 
