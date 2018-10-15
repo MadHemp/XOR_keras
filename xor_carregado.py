@@ -22,7 +22,7 @@ novo = entrada[600:]
 previsao = model.predict(novo)
 previsao = (previsao > 0.5)
 
-previsores = pd.read_csv('entradas_breast.csv')
-classe = pd.read_csv('saidas_breast.csv')
+previsores = pd.read_csv('inputXOR.csv')
+classe = pd.read_csv('outputXOR.csv')
 model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['binary_accuracy'])
 resultado = model.evaluate(previsores, classe)
